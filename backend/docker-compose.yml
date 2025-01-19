@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+    db:
+        container_name: postgres
+        image: postgres:15.2
+        restart: always
+        shm_size: 128mb
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        ports:
+            - 6543:6543
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        networks:
+            - teastream-backend
+volumes:
+    postgres_data:
+
+networks:
+    teastream-backend:
